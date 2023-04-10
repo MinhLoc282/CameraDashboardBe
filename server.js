@@ -12,7 +12,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3009;
 
-app.use(cors());
+const corsOptions = {
+  origin: ['https://camera-dashboard-nhom14.vercel.app/login', 'https://localhost:3000'],
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGO_URL, {
