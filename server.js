@@ -13,8 +13,10 @@ const app = express();
 const PORT = process.env.PORT || 3009;
 
 const corsOptions = {
-  origin: ['https://camera-dashboard-nhom14.vercel.app/login', 'https://localhost:3000'],
+  origin: ['https://camera-dashboard-nhom14.vercel.app', 'https://localhost:3000'],
 };
+
+app.options('*', cors());
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
