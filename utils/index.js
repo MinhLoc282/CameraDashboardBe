@@ -16,7 +16,7 @@ export const generateJwtToken = (user) => {
       email: user.email,
     },
     jwtSecret,
-    { expiresIn: '1h' },
+    { expiresIn: '24h' },
   );
   return token;
 };
