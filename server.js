@@ -6,6 +6,10 @@ import bodyParser from 'body-parser';
 
 import authRouter from './routes/auth.js';
 import userRouter from './routes/user.js';
+import cameraRouter from './routes/camera.js';
+import locationRouter from './routes/location.js';
+import warningRouter from './routes/warning.js';
+import statisticRouter from './routes/statistic.js';
 
 dotenv.config();
 
@@ -23,6 +27,10 @@ mongoose.connect(process.env.MONGO_URL, {
 
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
+app.use('/api', cameraRouter);
+app.use('/api', locationRouter);
+app.use('/api', warningRouter);
+app.use('/api', statisticRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
