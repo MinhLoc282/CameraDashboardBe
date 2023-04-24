@@ -19,9 +19,10 @@ const PORT = process.env.PORT || 3009;
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-})
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+  })
   .then(() => console.log('Connected to MongoDb'))
   .catch((err) => console.log(err));
 

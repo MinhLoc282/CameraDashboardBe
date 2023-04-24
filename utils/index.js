@@ -16,7 +16,16 @@ export const generateJwtToken = (user) => {
       email: user.email,
     },
     jwtSecret,
-    { expiresIn: '24h' },
+    { expiresIn: '24h' }
   );
   return token;
+};
+
+export const verifyToken = (token, secret = jwtSecret) => {
+  try {
+    const decoded = jwt.verify(token, secret);
+    return decoded;
+  } catch (error) {
+    throw new Error('Invalid token');
+  }
 };
