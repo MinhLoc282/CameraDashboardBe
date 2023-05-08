@@ -10,6 +10,7 @@ import cameraRouter from './routes/camera.js';
 import locationRouter from './routes/location.js';
 import warningRouter from './routes/warning.js';
 import statisticRouter from './routes/statistic.js';
+import videosRouter from './routes/videos.js';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use('/api', cameraRouter);
 app.use('/api', locationRouter);
 app.use('/api', warningRouter);
 app.use('/api', statisticRouter);
+app.use('/api', videosRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

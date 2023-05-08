@@ -19,6 +19,10 @@ const WarningSchema = new mongoose.Schema({
   playback: {
     type: String,
   },
+  isReaded: {
+    type: Boolean,
+    default: false,
+  },
 }, { versionKey: false });
 
 const Warning = mongoose.model('Warning', WarningSchema);
