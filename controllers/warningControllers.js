@@ -33,22 +33,20 @@ export const addWarning = async (req, res) => {
 
 export const markAsReadedWarnings = async (req, res) => {
   try {
-    const { warningIds } = req.body;
+    const warningIds = req.body;
 
     if (!Array.isArray(warningIds)) {
       return res.status(400).json({ msg: 'Invalid warningIds format' });
     }
 
-    const warnings = await Warning.find({ _id: { $in: warningIds } });
+    const updateResult = await Warning
+      .updateMany({ _id: { $in: warningIds } }, { $set: { isReaded: true } });
 
-    const savePromises = warnings.map((warning) => {
-      const warningCopy = [...warning];
-      warningCopy.isRead = true;
-      return warningCopy.save();
-    });
-    await Promise.all(savePromises);
+    if (updateResult.nModified === 0) {
+      return res.status(404).json({ msg: 'Warnings not found' });
+    }
 
-    res.status(200).json({ msg: 'Warnings marked as read' });
+    res.status(200).json({ msg: 'Warnings marked as read', warningIds });
   } catch (e) {
     res.status(500).json({ msg: 'Error when marking warnings as read' });
   }
@@ -56,7 +54,7 @@ export const markAsReadedWarnings = async (req, res) => {
 
 export const removeWarnings = async (req, res) => {
   try {
-    const { warningIds } = req.body;
+    const warningIds = req.body;
 
     if (!Array.isArray(warningIds)) {
       return res.status(400).json({ msg: 'Invalid warningIds format' });
@@ -68,7 +66,7 @@ export const removeWarnings = async (req, res) => {
       return res.status(404).json({ msg: 'Warnings not found' });
     }
 
-    res.status(200).json({ msg: 'Warnings removed successfully' });
+    res.status(200).json({ msg: 'Warnings removed successfully', warningIds });
   } catch (error) {
     res.status(500).json({ error });
   }
