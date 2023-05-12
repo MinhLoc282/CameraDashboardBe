@@ -1,9 +1,10 @@
 import express from 'express';
 
-import { getCameras } from '../controllers/cameraControllers.js';
+import { getCameras, addCamera } from '../controllers/cameraControllers.js';
 
 const cameraRouter = express.Router();
 
 cameraRouter.get('/cameras', getCameras);
+cameraRouter.post('/cameras', addCamera);
 
 export default cameraRouter;
