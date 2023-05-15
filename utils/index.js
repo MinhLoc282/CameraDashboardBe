@@ -14,9 +14,9 @@ export const generateJwtToken = (user) => {
     {
       userId: user.id,
       email: user.email,
+      isAdmin: user.isAdmin,
     },
     jwtSecret,
-    { expiresIn: '24h' },
   );
   return token;
 };
