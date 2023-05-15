@@ -17,6 +17,10 @@ const StatisticSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  isReaded: {
+    type: Boolean,
+    default: false,
+  },
 }, { versionKey: false });
 
 const Statistic = mongoose.model('Statistic', StatisticSchema);
