@@ -17,8 +17,20 @@ export const getUserInfo = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
+    if (!req.payload.isAdmin) {
+      return res.status(403).json({ msg: 'You are not admin' });
+    }
     const users = await User.find();
     res.status(200).json(users);
+  } catch (e) {
+    res.status(500).json('Error when getting all users');
+  }
+};
+
+export const countProfile = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users.length);
   } catch (e) {
     res.status(500).json('Error when getting all users');
   }
