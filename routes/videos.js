@@ -4,6 +4,6 @@ import { getVideos } from '../controllers/videosController.js';
 
 const videoRouter = express.Router();
 
-videoRouter.get('/videos', getVideos);
+videoRouter.get('/videos/:id', getVideos);
 
 export default videoRouter;
