@@ -35,7 +35,6 @@ app.use('/api', warningRouter);
 app.use('/api', statisticRouter);
 app.use('/api', videoRouter);
 
-
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });

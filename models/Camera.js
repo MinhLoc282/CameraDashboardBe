@@ -18,6 +18,15 @@ const CameraSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  videoId: {
+    type: String,
+    required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
 }, { versionKey: false });
 
 const Camera = mongoose.model('Camera', CameraSchema);
