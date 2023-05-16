@@ -2,13 +2,19 @@ import Camera from '../models/Camera.js';
 
 export const getCameras = async (req, res) => {
   try {
-    const cameras = await Camera.find();
-
+    const { isAdmin } = req.payload;
+    if (isAdmin) {
+      const cameras = await Camera.find();
+      if (!cameras || cameras.length === 0) {
+        return res.status(404).json({ msg: 'Cameras not found' });
+      }
+      return res.status(200).json(cameras);
+    }
+    const cameras = await Camera.find({ isAdmin });
     if (!cameras || cameras.length === 0) {
       return res.status(404).json({ msg: 'Cameras not found' });
     }
-
-    res.status(200).json(cameras);
+    return res.status(200).json(cameras);
   } catch (e) {
     res.status(500).json('Error when getting cameras');
   }
