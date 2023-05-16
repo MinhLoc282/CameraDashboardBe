@@ -20,7 +20,7 @@ const LocationSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { versionKey: false }
+  { versionKey: false },
 );
 
 const Location = mongoose.model('Location', LocationSchema);
